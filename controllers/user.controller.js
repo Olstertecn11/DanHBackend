@@ -39,15 +39,16 @@ const crearUsuario = async (req, res) => {
   }
 };
 
-// Obtener todos los usuarios
+
 const obtenerUsuarios = async (req, res) => {
   try {
-    const usuarios = await User.find();
+    const usuarios = await User.find().select('Nombre correo id_rol fecha_creacion estado');
     res.json(usuarios);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener usuarios', error: error.message });
   }
 };
+
 
 // Actualizar un usuario
 const actualizarUsuario = async (req, res) => {
