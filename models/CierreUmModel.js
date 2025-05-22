@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 
 const cierreUMSchema = new mongoose.Schema({
-  // Información preliminar
-  id: { type: String, required: true },
   proyecto: { type: String },
   cliente: { type: String, required: true },
   direccion: { type: String },
