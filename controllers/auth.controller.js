@@ -63,16 +63,19 @@ const verificarToken = (req, res) => {
   }
 };
 
+
 // 🔴 Logout
 const logout = async (req, res) => {
   try {
     const usuario = req.usuario;
-    if (usuario) {
-      // ✅ Log de cierre de sesión
+
+    const userData = await User.findById(usuario.id).select('Nombre'); // ✅ usar await
+
+    if (usuario && userData) {
       await Log.create({
-        id_usuario: usuario.id || 0,
+        id_usuario: usuario.id,
         accion: 'Logout',
-        detalles: `El usuario con ID ${usuario.id} cerró sesión`
+        detalles: `El usuario ${userData.Nombre} cerró sesión`
       });
     }
 
@@ -83,6 +86,7 @@ const logout = async (req, res) => {
     res.status(500).json({ mensaje: 'Error al cerrar sesión', error: error.message });
   }
 };
+
 
 // Obtener info de usuario autenticado
 const getUserInfo = (req, res) => {

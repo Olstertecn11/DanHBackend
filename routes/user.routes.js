@@ -18,10 +18,10 @@ router.post('/', verificarToken, crearUsuario);
 router.get('/', obtenerUsuarios);
 
 // Actualizar un usuario por ID
-router.put('/:id', actualizarUsuario);
+router.put('/:id', verificarToken, actualizarUsuario);
 
 // Eliminar un usuario por ID
-router.delete('/:id', eliminarUsuario);
+router.delete('/:id', verificarToken, eliminarUsuario);
 
 // Obtener rol de un usuario por ID
 router.get('/:id/rol', getUserRole)
