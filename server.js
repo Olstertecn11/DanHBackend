@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const userRoutes = require('./routes/user.routes');
 const authRoutes = require('./routes/auth.routes');
 const logsRoutes = require('./routes/logs.routes');
+const cierreUmRoutes = require('./routes/cierre_um.routes');
 const conectarDB = require('./config/db');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
@@ -37,6 +38,7 @@ conectarDB();
 app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/logs', logsRoutes);
+app.use('/api/cierre_um', cierreUmRoutes);
 
 // 🏠 Ruta base
 app.get("/", (req, res) => {
