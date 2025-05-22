@@ -1,16 +1,18 @@
 const express = require('express');
 const router = express.Router();
+const verificarToken = require('../middlewares/verificarToken');
 
 // Importar funciones del controlador
 const {
   crearUsuario,
   obtenerUsuarios,
   actualizarUsuario,
-  eliminarUsuario
+  eliminarUsuario,
+  getUserRole
 } = require('../controllers/user.controller');
 
 // Crear un nuevo usuario
-router.post('/', crearUsuario);
+router.post('/', verificarToken, crearUsuario);
 
 // Obtener todos los usuarios
 router.get('/', obtenerUsuarios);
@@ -20,5 +22,8 @@ router.put('/:id', actualizarUsuario);
 
 // Eliminar un usuario por ID
 router.delete('/:id', eliminarUsuario);
+
+// Obtener rol de un usuario por ID
+router.get('/:id/rol', getUserRole)
 
 module.exports = router;
