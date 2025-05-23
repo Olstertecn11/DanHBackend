@@ -35,7 +35,11 @@ const login = async (req, res) => {
     }
 
     const token = generarToken(usuario);
-    res.cookie('token', token, { httpOnly: true });
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: true,          // ⚠️ obligatorio en cross-origin, especialmente en Render
+      sameSite: 'None'       // ⚠️ necesario para permitir el uso desde otros dominios
+    });
 
     // ✅ Log de login exitoso
     await Log.create({
