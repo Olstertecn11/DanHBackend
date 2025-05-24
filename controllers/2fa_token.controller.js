@@ -26,7 +26,7 @@ const crearToken = async (req, res) => {
     const nuevoToken = await TwoFAToken.create({ userId, token });
 
     const sendSmtpEmail = {
-      sender: { name: "Olster Seguridad", email: "tucorreo@verificado.com" }, // Debe estar verificado en Brevo
+      sender: { name: "Olster Seguridad", email: "olstertecn597@gmail.com" }, // Debe estar verificado en Brevo
       to: [{ email: usuario.correo, name: usuario.Nombre }],
       subject: 'Código de verificación 2FA',
       htmlContent: `
