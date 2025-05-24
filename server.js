@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 3000;
 
 // ✅ CORS configurado correctamente para permitir cookies
 app.use(cors({
-  origin: 'http://localhost:3001', // 👈 Tu frontend
+  origin: 'http://24.199.111.122:3001/', // 👈 Tu frontend
   credentials: true                // 👈 Habilita envío de cookies,
 }));
 
