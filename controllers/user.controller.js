@@ -41,7 +41,7 @@ const crearUsuario = async (req, res) => {
 // Obtener usuarios
 const obtenerUsuarios = async (req, res) => {
   try {
-    const usuarios = await User.find().select('Nombre correo id_rol fecha_creacion estado');
+    const usuarios = await User.find().select('Nombre correo id_rol fecha_creacion estado twoFactorEnable');
     res.json(usuarios);
   } catch (error) {
     res.status(500).json({ mensaje: 'Error al obtener usuarios', error: error.message });
@@ -57,7 +57,15 @@ const actualizarUsuario = async (req, res) => {
       return res.status(404).json({ mensaje: 'Usuario no encontrado' });
     }
 
-    const campos = ['Nombre', 'correo', 'contrasena', 'id_rol', 'estado'];
+    const campos = [
+      'Nombre',
+      'correo',
+      'contrasena',
+      'id_rol',
+      'estado',
+      'twoFactorEnable' // ✅ permite modificar si tiene activado 2FA
+    ];
+
     campos.forEach(campo => {
       if (req.body[campo] !== undefined) {
         usuario[campo] = req.body[campo];

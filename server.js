@@ -4,6 +4,7 @@ const userRoutes = require('./routes/user.routes');
 const authRoutes = require('./routes/auth.routes');
 const logsRoutes = require('./routes/logs.routes');
 const cierreUmRoutes = require('./routes/cierre_um.routes');
+const twofaTokenRoutes = require('./routes/2fa_token.routes');
 const conectarDB = require('./config/db');
 const dotenv = require('dotenv').config();
 const cors = require('cors');
@@ -16,7 +17,7 @@ const PORT = process.env.PORT || 3000;
 // ✅ CORS configurado correctamente para permitir cookies
 app.use(cors({
   origin: 'http://localhost:3001', // 👈 Tu frontend
-  credentials: true                // 👈 Habilita envío de cookies
+  credentials: true                // 👈 Habilita envío de cookies,
 }));
 
 // 🧠 Middleware
@@ -39,6 +40,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/logs', logsRoutes);
 app.use('/api/cierre_um', cierreUmRoutes);
+app.use('/api/2fa_token', twofaTokenRoutes);
 
 // 🏠 Ruta base
 app.get("/", (req, res) => {
