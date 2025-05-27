@@ -14,7 +14,7 @@ const twoFATokenSchema = new mongoose.Schema({
   creado_en: {
     type: Date,
     default: Date.now,
-    expires: 300 // ⚠️ expira automáticamente en 5 minutos (300 segundos)
+    expires: 200 // ⚠️ expira automáticamente en 5 minutos (300 segundos)
   }
 });
 
